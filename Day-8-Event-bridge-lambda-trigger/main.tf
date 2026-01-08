@@ -1,8 +1,10 @@
+# Configure the AWS Provider
 provider "aws" {
     region = "us-east-1"
   
 }
 
+# Create IAM Role for Lambda
 resource "aws_iam_role" "lambda-role" {
     name = "lambda-execution-role"
     assume_role_policy = jsonencode({
@@ -18,11 +20,13 @@ resource "aws_iam_role" "lambda-role" {
   
 }
 
+# Attach AWSLambdaBasicExecutionRole policy to the IAM Role
 resource "aws_iam_role_policy_attachment" "lambda-policy-attachment" {
     role       = aws_iam_role.lambda-role.name
     policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
+# Create Lambda Function
 resource "aws_lambda_function" "lambda-trigger" {
     function_name = "event-bridge-lambda-trigger"
     role = aws_iam_role.lambda-role.arn
@@ -37,6 +41,7 @@ resource "aws_lambda_function" "lambda-trigger" {
 
 }
 
+# Create EventBridge Rule to trigger Lambda every 5 minutes
 resource "aws_cloudwatch_event_rule" "lambda-schedule-rule" {
     name = "lambda-schedule-rule"
     description = "Triggers Lambda every 5 minutes"
@@ -44,12 +49,14 @@ resource "aws_cloudwatch_event_rule" "lambda-schedule-rule" {
 
 }
 
+# Create EventBridge Target to link the rule to the Lambda function
 resource "aws_cloudwatch_event_target" "lambda-target" {
     rule = aws_cloudwatch_event_rule.lambda-schedule-rule.name
     target_id = "lambda-target"
     arn = aws_lambda_function.lambda-trigger.arn
 }
 
+# Permission for EventBridge to invoke the Lambda function
 resource "aws_lambda_permission" "event-bridge-permission" {
     statement_id = "AllowExecutionFromCloudWatch"
     action = "lambda:InvokeFunction"
