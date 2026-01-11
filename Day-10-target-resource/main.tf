@@ -1,5 +1,5 @@
 resource "aws_vpc" "name" {
-    
+    cidr_block = "10.0.0.0/24"
     tags = {
       Name = "test-import-vpc"
     }
@@ -18,6 +18,7 @@ resource "aws_subnet" "name" {
 }
 
 resource "aws_s3_bucket" "name" {
+    bucket = "target-test-bns-hyd"
 
 }
 
@@ -29,12 +30,4 @@ resource "aws_s3_bucket_versioning" "name" {
     status = "Enabled"
     
   }
-}
-
-resource "aws_instace" "name
-  
-}
-  
-}
-  
 }
