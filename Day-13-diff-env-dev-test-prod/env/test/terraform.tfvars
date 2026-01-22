@@ -1,0 +1,10 @@
+s3_bucket = "test-hyd-value-hard-coded"
+
+ami = "ami-07ff62358b87c7116"
+instance = "t3.medium"
+subnet_1_cidr  = "10.0.1.0/24"
+subnet_2_cidr = "10.0.2.0/24"
+vpc_cidr = "10.0.0.0/16"
+availability_zone_1 = "us-east-1a"
+availability_zone_2 = "us-east-1b"
+env = "test"

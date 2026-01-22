@@ -1,0 +1,14 @@
+variable "subnet_1_id" {}
+variable "subnet_2_id" {}
+variable "instance_class" {}
+variable "identifier" {}
+variable "db_name" {}
+variable "db_user" {}
+variable "db_password" {}
+variable "engine" {}
+variable "engine_version" {}
+variable "allocated_storage" {}
+variable "storage_type" {}
+variable "skip_final_snapshot" {}
+variable "publicly_accessible" {}
+variable "db_subnet_group_name" {}

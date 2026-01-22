@@ -1,0 +1,10 @@
+bucket = "test-diff-env-dev-hyd"
+
+ami = "ami-00a8151272c45cd8e"
+instance = "t3.micro"
+subnet_1_cidr  = "10.0.1.0/24"
+subnet_2_cidr = "10.0.2.0/24"
+vpc_cidr = "10.0.0.0/16"
+availability_zone_1 = "us-west-2a"
+availability_zone_2 = "us-west-2b"
+env = "dev"
