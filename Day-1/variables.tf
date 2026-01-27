@@ -1,5 +1,5 @@
 variable "ami_id" {
-  description = "passing the values"
+  description = "passing the values for main.tf"
 type = string
 default = ""
 
