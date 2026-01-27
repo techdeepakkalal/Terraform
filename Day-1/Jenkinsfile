@@ -1,0 +1,43 @@
+pipeline {
+    agent any
+    // parameters {
+    //     choice(
+    //         name: 'ACTION',
+    //         choices: ['apply', 'destroy'],
+    //         description: 'Select Terraform action'
+    //     )
+    // }
+
+    stages {
+        // stage('git checkout') {
+        //     steps {
+        //        git branch: 'main', url: 'https://github.com/CloudTechDevOps/Terraform-0700pm.git'
+        //     }
+        // }
+        stage('terraform init') {
+            
+            steps {
+                dir('Day-1-basic-code') {
+               sh 'terraform init'
+            }
+        }
+        }
+           stage('terraform plan') {
+            
+            steps {
+                dir('Day-1-basic-code') {
+               sh 'terraform plan'
+            }
+        }
+           }
+        // stage('terraform apply/destroy') {
+            
+        //     steps {
+        //         dir('Day-1-basic-code') {
+        //        sh 'terraform ${ACTION} -auto-approve'
+        //     }
+        // }
+        // }
+        
+        }
+    }
